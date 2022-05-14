@@ -24,4 +24,13 @@ class Pages extends BaseController
         echo view('pages/about');
         echo view('layout/footer');
     }
+
+    // ==== VIEW PAKAI TEMPLATE ENGINE ====
+    public function kontak(){
+        $data = [
+            'tittle' => 'Kontak Me'
+        ];
+
+        return view('pages/kontak',$data);
+    }
 }
