@@ -43,14 +43,34 @@ class Crud extends BaseController
         //         'id'=>$id
         //     ]
         // )->first();
-        
-        // ========= ATAU Pakai metod di model ==========
-        $komik = $this->komikModel->getKomik($id);
 
-        // dd($komik);
+        if ($id !='') {
+            # code...
+            // ========= ATAU Pakai metod di model ==========
+            $komik = $this->komikModel->getKomik($id);
+    
+            // dd($komik);
+            $data = [
+                'tittle' => 'CRUD',
+                'komik' => $komik
+            ];
+            return view('crud/detail', $data);
+        }else{
+            $komik = $this->komikModel->getKomik($id);
+    
+            // dd($komik);
+            $data = [
+                'tittle' => 'CRUD',
+            ];
+            return view('crud/detail');
+
+        }
+        
+    }
+
+    public function tambah(){
         $data = [
-            'tittle' => 'CRUD',
-            'komik' => $komik
+            'tittle' => 'CRUD TAMBAH',
         ];
 
 

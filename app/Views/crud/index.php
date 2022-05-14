@@ -2,6 +2,9 @@
 <?= $this->section('konten') ?>
 
 <div class="container">
+    <div class="col">
+        <a href="/crud/tambah" class="btn btn-success btn-xs">Tambah</a>
+    </div>
     <div class="row">
         <div class="col">
             <table class="table">
