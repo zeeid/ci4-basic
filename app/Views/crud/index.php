@@ -11,6 +11,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Creator</th>
                         <th scope="col">Handle</th>
+                        <th>AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,10 @@
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= $data['creator'] ?></td>
                                     <td><?= $data['create_at'] ?></td>
+                                    <td>
+                                        <a href="/crud/detail/<?=$data['id']?>" class="btn btn-success btn-xs">Detail</a>
+                                        <button type="button" class="btn btn-danger btn-xs">Hapus</button>
+                                    </td>
                                 </tr>
                             <?php
                         }

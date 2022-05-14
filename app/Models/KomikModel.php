@@ -25,4 +25,17 @@ class KomikModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function getKomik($id = false){
+
+        if ($id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where(
+            [
+                'id'=>$id
+            ]
+        )->first();
+    }
 }

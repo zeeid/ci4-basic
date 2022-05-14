@@ -34,4 +34,26 @@ class Crud extends BaseController
 
         return view('crud/index', $data);
     }
+
+    public function detail($id =''){
+
+        // ========= Pakai model langsung query builder =======
+        // $komik = $this->komikModel->where(
+        //     [
+        //         'id'=>$id
+        //     ]
+        // )->first();
+        
+        // ========= ATAU Pakai metod di model ==========
+        $komik = $this->komikModel->getKomik($id);
+
+        // dd($komik);
+        $data = [
+            'tittle' => 'CRUD',
+            'komik' => $komik
+        ];
+
+
+        return view('crud/detail', $data);
+    }
 }

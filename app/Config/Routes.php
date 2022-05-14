@@ -49,12 +49,15 @@ $routes->get('/fungsi', function(){
 // :num 
 // :alpha
 // :alphanum
+// :segment =? String tanpa spesial char
 
 // kekurangan :any akan membuat nge bug di kontroller
 $routes->get('/coba/(:any)/(:num)', 'Coba::dataplaceholder/$1/$2');
 
 // ===== ROUTE KONTROLER DALAM FOLDER =======
 $routes->get('/users', 'Admin\Users::index');
+
+$routes->get('/crud/detail/(:segment)', 'Crud::detail/$1');
 
 /*
  * --------------------------------------------------------------------
