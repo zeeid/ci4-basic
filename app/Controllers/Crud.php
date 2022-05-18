@@ -79,12 +79,26 @@ class Crud extends BaseController
     public function tambah(){
         $data = [
             'tittle' => 'CRUD TAMBAH',
+            'validasi' => \Config\Services::validation(),
         ];
+
+        // $validasi = \Config\Services::validation();
+
         return view('crud/detail', $data);
     }
 
     public function insert(){
         // dd($this->request->getVar());
+
+        // ========= VALIDASI ==========
+        if (!$this->validate([
+            'nama' => 'required',
+            'creator' => 'required',
+        ])) {
+            $validasi = \Config\Services::validation();
+
+            return redirect()->to('/crud/tambah')->withInput()->with('validasi',$validasi);
+        }
         
         // ==== INSERT PAKE BUILDer TANPA MODEL=====
         // $data = [

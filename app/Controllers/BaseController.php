@@ -54,6 +54,8 @@ class BaseController extends Controller
         // ===== SIMPAN DATA / VARIABEL GLOBAL DISINI ==========
         $this->nama = "NAMA KU DI GLOBAL VAR";
 
+        session();
+
         // Cara konek DB tanpa model
         $this->db = \Config\Database::connect();
         // $komik = $db->query("SELECT * from komik")->getResultArray();
