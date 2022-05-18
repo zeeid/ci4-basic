@@ -11,6 +11,7 @@
         ?>
 
             <form id="detail" method="post" action="<?=$urlnya?>">
+                <input type="text" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                 <div class="form-group row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
