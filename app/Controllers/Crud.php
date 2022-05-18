@@ -54,6 +54,14 @@ class Crud extends BaseController
                 'tittle' => 'CRUD',
                 'komik' => $komik
             ];
+
+            // ==== Jika hasil kosong =======
+
+            if (empty($data['komik'])) {
+                throw new \CodeIgniter\Exceptions\PageNotFoundException('data tidak ditemukan');
+                
+            }
+
             return view('crud/detail', $data);
         }else{
             $komik = $this->komikModel->getKomik($id);
@@ -72,8 +80,32 @@ class Crud extends BaseController
         $data = [
             'tittle' => 'CRUD TAMBAH',
         ];
-
-
         return view('crud/detail', $data);
+    }
+
+    public function insert(){
+        // dd($this->request->getVar());
+        
+        // ==== INSERT PAKE BUILDer TANPA MODEL=====
+        // $data = [
+        //     'nama' => $this->request->getVar('nama'),
+        //     'creator' => $this->request->getVar('creator')
+        // ];
+        // $builder = $this->db->table('komik');
+        // $simpan = $builder->insert($data);
+        // === RETURN 1 jika berhasil simpan
+
+        // ===== SIMPAN PAKAI MODEL====
+            $simpan = $this->komikModel->save([
+                            'nama' => $this->request->getVar('nama'),
+                            'creator' => $this->request->getVar('creator')
+                        ]);
+
+        // echo $simpan;
+
+        // ==== BUAT FLASH DATA ====
+        session()->setFlashdata('pesan', 'Berhasil disimpan');
+
+        return redirect()->to('/crud');
     }
 }

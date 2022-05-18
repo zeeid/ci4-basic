@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form id="detail" method="post">
+            <form id="detail" method="post" action="/crud/insert">
                 <div class="form-group row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">

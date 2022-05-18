@@ -7,6 +7,17 @@
     </div>
     <div class="row">
         <div class="col">
+            <?php 
+                if (session()->getFlashdata('pesan')) {
+                    ?>
+                        <h1><?= session()->getFlashdata('pesan') ?></h1>
+                    <?php
+                }
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <table class="table">
                 <thead>
                     <tr>
@@ -26,7 +37,7 @@
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= $data['creator'] ?></td>
-                                    <td><?= $data['create_at'] ?></td>
+                                    <td><?= $data['created_at'] ?></td>
                                     <td>
                                         <a href="/crud/detail/<?=$data['id']?>" class="btn btn-success btn-xs">Detail</a>
                                         <button type="button" class="btn btn-danger btn-xs">Hapus</button>

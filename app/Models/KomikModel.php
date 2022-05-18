@@ -15,16 +15,16 @@ class KomikModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['name', 'email'];
+    protected $allowedFields = ['nama', 'creator'];
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    // protected $deletedField  = 'deleted_at';
+    protected $deletedField  = 'deleted_at';
 
-    protected $validationRules    = [];
-    protected $validationMessages = [];
-    protected $skipValidation     = false;
+    // protected $validationRules    = [];
+    // protected $validationMessages = [];
+    // protected $skipValidation     = false;
 
     public function getKomik($id = false){
 
