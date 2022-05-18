@@ -4,7 +4,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form id="detail" method="post" action="/crud/insert">
+
+        <?php 
+            // ======= JIKA ADA ID MAKA UPDATE ELSE SIMPAN ================
+            $urlnya = isset($komik['id']) ? "/crud/update" : "/crud/insert";
+        ?>
+
+            <form id="detail" method="post" action="<?=$urlnya?>">
                 <div class="form-group row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
