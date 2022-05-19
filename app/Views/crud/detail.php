@@ -9,10 +9,17 @@
             // ======= JIKA ADA ID MAKA UPDATE ELSE SIMPAN ================
             $urlnya = isset($komik['id']) ? "/crud/update" : "/crud/insert";
 
-            $error_nama = ($validasi->hasError('nama')) ? 'is-invalid' : '';
-            $error_nama_detail = ($validasi->hasError('nama')) ? $validasi->getError('nama') : '';
+            $error_list ='';
+            $error_nama = '';
+            $error_nama_detail = '';
+            if(isset($validasi)){
+                $error_list = $validasi->listErrors();
+                $error_nama = ($validasi->hasError('nama')) ? 'is-invalid' : '';
+                $error_nama_detail = ($validasi->hasError('nama')) ? $validasi->getError('nama') : '';
+            }
+
         ?>
-            <?= isset($validasi) ? $validasi->listErrors() : ""; ?>
+            <?= $error_list; ?>
 
             <form id="detail" method="post" action="<?=$urlnya?>">
                 <input type="text" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />

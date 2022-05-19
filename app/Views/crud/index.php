@@ -40,7 +40,12 @@
                                     <td><?= $data['created_at'] ?></td>
                                     <td>
                                         <a href="/crud/detail/<?=$data['id']?>" class="btn btn-success btn-xs">Detail</a>
-                                        <button type="button" class="btn btn-danger btn-xs">Hapus</button>
+                                        
+                                        <form action="/crud/detail/<?=$data['id']?>" method="post" class="d-inline">
+                                            <?= csrf_field();?>
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php

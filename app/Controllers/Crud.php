@@ -122,4 +122,39 @@ class Crud extends BaseController
 
         return redirect()->to('/crud');
     }
+
+    public function delete($id){
+
+        // ======== DELEte PAKAI MODELS ========
+        // $hapus = $this->komikModel->delete($id);
+
+        // delete pake Builder =======
+        $builder    = $this->db->table('komik');
+        $hapus      = $builder->delete(['id' => $id]);
+        // return 1 jika true
+
+        // ==== BUAT FLASH DATA ====
+        session()->setFlashdata('pesan', 'Berhasil dihapus');
+
+        return redirect()->to('/crud');
+    }
+
+    public function update(){
+        $id = $this->request->getVar('idnya');
+        $data = [
+            'nama' => $this->request->getVar('nama'),
+            'creator' => $this->request->getVar('creator')
+        ];
+
+        // dd($id);
+        $builder    = $this->db->table('komik');
+        $builder->where('id', $id);
+        $update = $builder->update($data);
+        // === return 1 if true
+
+         // ==== BUAT FLASH DATA ====
+        session()->setFlashdata('pesan', 'Berhasil diupdate');
+
+        return redirect()->to('/crud');
+    }
 }

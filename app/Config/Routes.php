@@ -57,7 +57,8 @@ $routes->get('/coba/(:any)/(:num)', 'Coba::dataplaceholder/$1/$2');
 // ===== ROUTE KONTROLER DALAM FOLDER =======
 $routes->get('/users', 'Admin\Users::index');
 
-$routes->get('/crud/detail/(:segment)', 'Crud::detail/$1');
+$routes->delete('/crud/detail/(:num)', 'Crud::delete/$1');
+$routes->get('/crud/detail/(:any)', 'Crud::detail/$1');
 
 /*
  * --------------------------------------------------------------------
