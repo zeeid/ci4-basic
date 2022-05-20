@@ -12,6 +12,8 @@
             $error_list ='';
             $error_nama = '';
             $error_nama_detail = '';
+            $error_gambar='';
+            $error_gambar_detail ='';
             if(isset($validasi)){
                 $error_list = $validasi->listErrors();
 
