@@ -20,10 +20,10 @@ class Crud extends BaseController
     public function index()
     {
         // Cara konek DB tanpa model
-        $db = \Config\Database::connect();
-        // $komik = $db->query("SELECT * from komik")->getResultArray();
+        // $db = \Config\Database::connect();
+        $komik = $this->db->query("SELECT * from komik")->getResultArray();
         
-        $komik = $this->komikModel->findAll();
+        // $komik = $this->komikModel->findAll();
         
 
         $data = [
@@ -94,10 +94,17 @@ class Crud extends BaseController
         if (!$this->validate([
             'nama' => 'required',
             'creator' => 'required',
+            'sampul' => [
+                'rules'     => 'uploaded[sampul]|max_size[sampul, 1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'errors'    => [
+                    'uploaded'  => 'Gambar wajib di isi',
+                    'max_size'  => 'Gambar kebesaran',
+                    'is_image'  => 'Bukan Gambar Broo',
+                    'mime_in'   => 'Bukan Gambar Broo'
+                ]
+            ],
         ])) {
-            $validasi = \Config\Services::validation();
-
-            return redirect()->to('/crud/tambah')->withInput()->with('validasi',$validasi);
+            return redirect()->to('/crud/tambah')->withInput();
         }
         
         // ==== INSERT PAKE BUILDer TANPA MODEL=====
