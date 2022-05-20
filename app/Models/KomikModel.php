@@ -15,7 +15,7 @@ class KomikModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['nama', 'creator'];
+    protected $allowedFields = ['nama', 'creator','sampul'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

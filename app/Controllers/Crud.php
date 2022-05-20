@@ -95,9 +95,8 @@ class Crud extends BaseController
             'nama' => 'required',
             'creator' => 'required',
             'sampul' => [
-                'rules'     => 'uploaded[sampul]|max_size[sampul, 1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'rules'     => 'max_size[sampul, 1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
                 'errors'    => [
-                    'uploaded'  => 'Gambar wajib di isi',
                     'max_size'  => 'Gambar kebesaran',
                     'is_image'  => 'Bukan Gambar Broo',
                     'mime_in'   => 'Bukan Gambar Broo'
@@ -106,6 +105,26 @@ class Crud extends BaseController
         ])) {
             return redirect()->to('/crud/tambah')->withInput();
         }
+
+        // ============ SIMPAN FILE ===============
+            $filenya    = $this->request->getFile('sampul');
+            // ==== CEK JIKA UPLOAD KOSONG ====
+                if ($filenya->getError() == 4) {
+                    $namafile_random = 'default.jpg';
+                }else{
+
+                    // ==== generate Nama file random  ===
+                    $namafile_random = $filenya->getRandomName();
+                    // ==== PINDAH FILE KE FOLDER ===
+                    $filenya->move('img',$namafile_random);
+        
+                    // $filenya->move('img');
+                    // ==== AMBIL NAMA FILE Kalau nama file seperti yg diupload ====
+                    // $namafile   = $filenya->getName();
+        
+                    // dd($namafile);
+                }
+        // ============ SIMPAN FILE ===============
         
         // ==== INSERT PAKE BUILDer TANPA MODEL=====
         // $data = [
@@ -118,8 +137,9 @@ class Crud extends BaseController
 
         // ===== SIMPAN PAKAI MODEL====
             $simpan = $this->komikModel->save([
-                            'nama' => $this->request->getVar('nama'),
-                            'creator' => $this->request->getVar('creator')
+                            'nama'      => $this->request->getVar('nama'),
+                            'creator'   => $this->request->getVar('creator'),
+                            'sampul'    => $namafile_random
                         ]);
 
         // echo $simpan;
