@@ -1,3 +1,12 @@
+===> FIRST RUN [IF YOU COPY FROM MY GITHUB REPO]<===
+composer install
+
+===> CARA PAKSA JIKA GAGAL SEMUA <====
+composer update --ignore-platform-reqs
+
+
+================================================================================
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
